@@ -62,6 +62,36 @@ fn part_1() {
     }
     println!("dial: {dial}, count: {count}");
 }
+fn part_2 (){
+    let mut dial = START;
+    let mut count = 0;
+    let mut count_mid_zeros = 0;
+    let inputs = common();
+
+    for i in inputs {
+        dial = match i {
+            Input {rot:Some(Rotation::R), num} =>{
+                 if (dial + num) >100 {
+                    count_mid_zeros += 1;
+                 }
+                 (dial + num) %LAST
+             },
+            Input {rot:Some(Rotation::L), num} =>{
+                if dial <  num {
+                    count_mid_zeros += 1;
+                 } 
+                (dial + LAST - (num %LAST)) %LAST
+            },
+            Input {rot: _,num:_} => dial 
+        };
+        if dial == 0{
+            count += 1;
+        }
+    }
+    println!("part 2 dial: {dial}, count: {count} , midZero: {count_mid_zeros} , result {:?}",count + count_mid_zeros );
+
+}
 fn main(){
     part_1();
+    part_2()
 }
