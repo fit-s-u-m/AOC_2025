@@ -1,0 +1,16 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name='aoc'
+path = "src/lib.rs"
+
+[[bin]]
+name = "day1"
+path = "src/day1.rs"
+
+
+[dependencies]
+anyhow = "1.0.100"
